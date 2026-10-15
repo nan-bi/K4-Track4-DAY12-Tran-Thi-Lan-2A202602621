@@ -117,12 +117,37 @@ def replay(segs, make_stream, mode="fastest", cost_seed=0, spike_prob=0.02, base
 def compare_with_tol(golden, new, atol=1e-3, rtol=1e-3):
     """Segment-by-segment comparison. A segment 'differs' if any command is outside atol + rtol * |golden|.
     Also reports how many segments are not bit-identical, to show why exact equality is the wrong test."""
-    # TODO (Bước 1): hãy tự cài hàm này. Gợi ý:
-    #   golden và new có shape (n_seg, T), NaN ở phần đệm. Một đoạn 'lệch' nếu có lệnh nào vượt atol + rtol
-    #   * |golden|. Hai NaN ở cùng vị trí coi là bằng nhau. Trả dict có đúng các khoá: segments,
-    #   differ_beyond_tol, not_bit_identical (số đoạn không giống TỪNG BIT), max_abs_diff, atol, rtol,
-    #   differing_segments (tối đa 20 chỉ số đầu, dạng list).
-    raise NotImplementedError("TODO compare_with_tol: xem GUIDE.md, Bước 1")
+    golden = np.asarray(golden, dtype=float)
+    new = np.asarray(new, dtype=float)
+    if golden.ndim != 2 or new.shape != golden.shape:
+        raise ValueError("replay arrays must have the same (segments, frames) shape")
+    n_seg = len(golden)
+
+    both_nan = np.isnan(golden) & np.isnan(new)
+    one_nan = np.isnan(golden) ^ np.isnan(new)
+
+    not_bit_identical_mask = one_nan | ((golden != new) & ~both_nan)
+    seg_not_bit_identical = not_bit_identical_mask.any(axis=1)
+
+    diff = np.zeros_like(golden)
+    np.subtract(golden, new, out=diff, where=~both_nan & (golden != new))
+    diff = np.abs(diff)
+
+    differ_mask = ~np.isclose(new, golden, atol=atol, rtol=rtol, equal_nan=True)
+    seg_differ = differ_mask.any(axis=1)
+
+    valid_diff = diff[~both_nan & ~one_nan]
+    max_abs_diff = float(np.max(valid_diff)) if valid_diff.size > 0 else 0.0
+
+    return {
+        "segments": int(n_seg),
+        "differ_beyond_tol": int(seg_differ.sum()),
+        "not_bit_identical": int(seg_not_bit_identical.sum()),
+        "max_abs_diff": max_abs_diff,
+        "atol": float(atol),
+        "rtol": float(rtol),
+        "differing_segments": np.flatnonzero(seg_differ)[:20].tolist(),
+    }
 
 
 def summation_order_demo(n=1_000_000, seed=0):

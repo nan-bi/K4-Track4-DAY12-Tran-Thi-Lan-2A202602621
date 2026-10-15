@@ -1,0 +1,33 @@
+PercMLP+ open-loop metrics recomputed from the five saved models on the held-out windows.
+[
+  {
+    "seed": 9235,
+    "all": 0.7945495843887329,
+    "brake_slice": 0.9701579809188843,
+    "slice_share": 0.04697555595884578
+  },
+  {
+    "seed": 9236,
+    "all": 0.7925519943237305,
+    "brake_slice": 0.9652174711227417,
+    "slice_share": 0.04697555595884578
+  },
+  {
+    "seed": 9237,
+    "all": 0.8118677735328674,
+    "brake_slice": 0.9990894794464111,
+    "slice_share": 0.04697555595884578
+  },
+  {
+    "seed": 9238,
+    "all": 0.8400511741638184,
+    "brake_slice": 0.9773163199424744,
+    "slice_share": 0.04697555595884578
+  },
+  {
+    "seed": 9239,
+    "all": 0.823754072189331,
+    "brake_slice": 0.9487975239753723,
+    "slice_share": 0.04697555595884578
+  }
+]

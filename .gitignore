@@ -2,5 +2,7 @@ data/*.csv
 work/
 __pycache__/
 *.pyc
+venv/
+.venv/
 viz/lab_models.js
 viz/lab_data.js

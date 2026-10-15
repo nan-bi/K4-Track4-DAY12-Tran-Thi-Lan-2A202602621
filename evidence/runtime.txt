@@ -1,0 +1,9 @@
+Python: 3.12.14
+NumPy: 2.5.4
+pandas: 3.0.6
+matplotlib: 3.11.2
+Dataset bytes: 195380179
+Dataset SHA256: 0739657faf49edc3c59198748d7741fb589d3a90b946490fd295c4a5acf2d82f
+Student parameters: {'student_id': '2A202602621', 'split_seed': 3588, 'model_seed': 9235, 'v_ego': 10.0}
+Command: python run_all.py --student-id 2A202602621
+Training seeds: 5; quick mode: false

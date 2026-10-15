@@ -1,0 +1,7 @@
+PASS: lab12/replay.py changes confined to permitted function bodies
+PASS: lab12/scenarios.py changes confined to permitted function bodies
+PASS: lab12/models.py changes confined to permitted function bodies
+PASS: lab12/stats.py changes confined to permitted function bodies
+PASS: lab12/gate.py changes confined to permitted function bodies
+PASS: lab12/augment.py changes confined to permitted function bodies
+PASS: no tracked files outside the permitted source modules and REPORT.md changed

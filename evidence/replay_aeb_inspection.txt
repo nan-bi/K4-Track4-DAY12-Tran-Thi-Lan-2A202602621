@@ -1,0 +1,4 @@
+segment 171; frames beyond tolerance: [65, 66, 67]
+frame 65: gap=3.4055 m, closing=2.3237 m/s, TTC=1.4656 s, command=-5.706048 -> -6.000000 m/s^2
+frame 66: gap=3.2075 m, closing=2.2641 m/s, TTC=1.4167 s, command=-5.628488 -> -6.000000 m/s^2
+frame 67: gap=3.0235 m, closing=2.1462 m/s, TTC=1.4088 s, command=-5.590591 -> -6.000000 m/s^2
